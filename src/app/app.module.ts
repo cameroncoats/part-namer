@@ -12,8 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NameGenComponent } from './name-gen/name-gen.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NameGenComponent } from './name-gen/name-gen.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
