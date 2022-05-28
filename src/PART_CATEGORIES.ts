@@ -15,4 +15,20 @@ export const PART_CATEGORIES: PartCategory[] = [{
         value: "PLC CPU"
       },
     ]
+},
+{
+  id: 1,
+  name: 'PLC IO',
+  fields: [
+    {
+      name: "MPN",
+      description: "Manufacturer's Part Number",
+      type: PartCategoryFieldType.freeText
+    },
+    {
+      name: "Category",
+      type: PartCategoryFieldType.fixedValue,
+      value: "PLC IO"
+    },
+  ]
 }];
