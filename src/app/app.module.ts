@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NameGenComponent } from './name-gen/name-gen.component';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NameGenComponent } from './name-gen/name-gen.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
