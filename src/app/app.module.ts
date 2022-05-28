@@ -16,6 +16,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NameGenComponent } from './name-gen/name-gen.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,11 @@ import { MatCardModule } from '@angular/material/card';
     MatListModule,
     MatAutocompleteModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
