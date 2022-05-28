@@ -9,11 +9,16 @@ import { PartCategory } from '../../PartCategory';
 })
 export class NameGenComponent implements OnInit {
 
-  PartCategories: PartCategory[] = [];
+  partCategories: PartCategory[] = [];
 
   constructor(private partCategoryService: PartCategoryService) { }
 
   ngOnInit(): void {
+    this.getPartCategories();
+  }
+
+  getPartCategories(): void {
+    this.partCategories = this.partCategoryService.getPartCategories();
   }
 
 }

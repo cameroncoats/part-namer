@@ -1,1 +1,7 @@
-<p>name-gen works!</p>
+<h2>Part Categories</h2>
+<ul>
+  <li *ngFor="let partCategory of partCategories">
+      <span>{{partCategory.id}}</span>
+      <span>{{partCategory.name}}</span>
+  </li>
+</ul>
