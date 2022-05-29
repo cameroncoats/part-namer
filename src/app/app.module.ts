@@ -23,6 +23,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldsFormComponent } from './components/fields-form/fields-form.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { FieldsFormComponent } from './components/fields-form/fields-form.compon
     ReactiveFormsModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
