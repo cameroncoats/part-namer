@@ -1,13 +1,13 @@
 import {
   Component,
   Input,
+  Output,
+  EventEmitter,
   ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { PartCategoryField } from 'src/PartCategory';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-fields-form',
@@ -17,16 +17,20 @@ import { stringify } from 'querystring';
 })
 export class FieldsFormComponent implements OnChanges {
   @Input() formFields: PartCategoryField[] = [];
+  @Output() formValues = new EventEmitter<Record<string,unknown>>();
 
   public fieldsFormGroup: FormGroup = this.fb.group({});
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.formFields !== undefined) {
       this.createForm(this.formFields);
       console.log(this.formFields);
     }
+    this.fieldsFormGroup.valueChanges.subscribe(val => {
+        this.formValues.emit(this.fieldsFormGroup.getRawValue());
+      });
   }
 
   createForm(controls: PartCategoryField[]) {
@@ -81,17 +85,7 @@ export class FieldsFormComponent implements OnChanges {
         this.fb.control({value: (control.value === undefined ? '' : control.value), disabled: (control.type == "fixedText")}, validatorsToAdd)
       );
     }
-  }
-
-  getPartName(fields):string {
-    let partName = "";
-
-    // combine all field values into comma separated string
-    for (const val of Object.values(fields)) {
-     partName += val + ', '
-    }
-    // remove trailing comma
-    return partName.slice(0,-2);
+    this.formValues.emit(this.fieldsFormGroup.getRawValue());
   }
 
 }

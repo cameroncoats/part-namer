@@ -16,6 +16,7 @@ import {
 })
 export class NameGenComponent implements OnInit {
   partCategories: PartCategories;
+  formValues: Record<string,unknown>;
   name = new FormControl();
 
 
@@ -35,5 +36,19 @@ export class NameGenComponent implements OnInit {
 
   displayFn(value?: PartCategory): string {
     return value.name;
+  }
+
+  valuesChanged(values: Record<string,unknown>){
+    this.formValues = values;
+  }
+
+  getPartNameCommas(fields):string {
+    let partName = "";
+    // combine all field values into comma separated string
+    for (const val of Object.values(fields)) {
+      partName += val + ', '
+     }
+     // remove trailing comma
+     return partName.slice(0,-2);
   }
 }
