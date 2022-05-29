@@ -7,7 +7,10 @@
         {
           "name": "MPN",
           "description": "Manufacturer's Part Number",
-          "type": "freeText"
+          "type": "freeText",
+          "validators": {
+            "required": true
+          }
         },
         {
           "name": "Category",
