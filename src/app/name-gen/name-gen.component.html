@@ -6,7 +6,7 @@
       </mat-card-header>
       <mat-card-content>
         <form class="example-form">
-          <mat-form-field class="example-full-width" appearance="fill">
+          <mat-form-field class="example-full-width" appearance="fill" *ngIf="partCategories !== undefined">
             <mat-label>Category</mat-label>
             <input
               type="text"
@@ -30,7 +30,7 @@
     </mat-card>
   </div>
   <br>
-  <div fxLayout="row" fxLayoutAlign="center center" class="content" [ngIf]="name.value !== undefined">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content"  *ngIf="name.value !== null">
     <mat-card class="card">
       <mat-card-header>
         Category Specific Fields
@@ -44,7 +44,7 @@
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
     <mat-card>
       <mat-card-content>
-        <pre></pre>
+
       </mat-card-content>
     </mat-card>
   </div>
