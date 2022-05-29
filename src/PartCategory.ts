@@ -1,3 +1,6 @@
+export interface PartCategories{
+  categories: PartCategory[]
+}
 export interface PartCategory {
   id: number;
   name: string;
@@ -5,7 +8,7 @@ export interface PartCategory {
   fields: PartCategoryField[];
 }
 
-interface PartCategoryField {
+export interface PartCategoryField {
   name: string;
   description?: string;
   label: string;
