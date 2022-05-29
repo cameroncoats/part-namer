@@ -1,5 +1,7 @@
 export interface PartCategories{
   categories: PartCategory[]
+  version: string,
+  lastUpdate: string,
 }
 export interface PartCategory {
   id: number;
