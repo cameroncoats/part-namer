@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-
-import { PartCategory, PartCategoryFieldType } from "../PartCategory";
-import { PART_CATEGORIES } from '../PART_CATEGORIES';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PartCategories } from "../PartCategory";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartCategoryService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getPartCategories(){
-    return PART_CATEGORIES;
+    getPartCategories(): Observable<PartCategories> {
+      return this.http.get<PartCategories>('/assets/part-categories.json')
+    }
   }
-}

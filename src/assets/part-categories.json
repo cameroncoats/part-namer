@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "PLC CPU",
+      "fields": [
+        {
+          "name": "MPN",
+          "description": "Manufacturer's Part Number",
+          "type": "freeText"
+        },
+        {
+          "name": "Category",
+          "type": "fixedValue",
+          "value": "PLC CPU"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "PLC IO",
+      "fields": [
+        {
+          "name": "MPN",
+          "description": "Manufacturer's Part Number",
+          "type": "freeText"
+        },
+        {
+          "name": "Category",
+          "type": "fixedValue",
+          "value": "PLC IO"
+        }
+      ]
+    }
+  ]
+}
