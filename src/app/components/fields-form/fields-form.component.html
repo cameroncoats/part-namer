@@ -28,10 +28,11 @@
   </mat-form-field>
   <mat-form-field *ngIf="control.type === 'select'">
     <mat-label *ngIf="control.label !== ''">{{ control.label }}</mat-label>
-    <mat-slide-toggle
-      [formControlName]="control.name"
-      [checked]="control.value"
-    ></mat-slide-toggle>
+    <mat-select [formControlName]="control.name">
+      <mat-option *ngFor="let option of control.options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
     <mat-hint align="end" *ngIf="control.description">{{control.description}}</mat-hint>
   </mat-form-field>
   </div>

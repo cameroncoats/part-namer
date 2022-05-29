@@ -20,7 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSlider, MatSliderModule } from '@angular/material/slider';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldsFormComponent } from './components/fields-form/fields-form.component';
 
@@ -51,7 +51,7 @@ import { FieldsFormComponent } from './components/fields-form/fields-form.compon
     ReactiveFormsModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatSliderModule
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
