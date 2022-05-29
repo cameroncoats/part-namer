@@ -5,6 +5,7 @@ export interface PartCategory {
   id: number;
   name: string;
   description?: string;
+  template?: string;
   fields: PartCategoryField[];
 }
 
