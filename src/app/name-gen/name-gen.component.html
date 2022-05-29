@@ -1,9 +1,7 @@
 <div class="container">
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
     <mat-card class="card">
-      <mat-card-header>
-        Choose a Category:
-      </mat-card-header>
+      <mat-card-header>Choose a Category:</mat-card-header>
       <mat-card-content>
         <form class="example-form">
           <mat-form-field class="example-full-width" *ngIf="partCategories !== undefined">
@@ -34,23 +32,29 @@
   <br>
   <div fxLayout="row" fxLayoutAlign="center center" class="content"  *ngIf="name.value !== null">
     <mat-card class="card">
-      <mat-card-header>
-        {{name.value.name}} Fields:
-      </mat-card-header>
+      <mat-card-header>{{name.value.name}} Fields:</mat-card-header>
       <mat-card-content>
         <app-fields-form [formFields]="name.value.fields" (formValues)="valuesChanged($event)"></app-fields-form>
       </mat-card-content>
     </mat-card>
   </div>
   <br />
-  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="name.value !== null">
     <mat-card>
-      <mat-card-header>
-        Part Name:
-      </mat-card-header>
+      <mat-card-header>Part Name:</mat-card-header>
       <mat-card-content>
-        <pre>{{formValues | json}}</pre>
+        <mat-form-field appearance="fill">
+          <textarea matInput readonly="true" style="resize:none"  [cdkCopyToClipboard]="getPartName(formValues)">
+            {{getPartName(formValues)}}
+          </textarea>
+          <mat-hint>Click to Copy</mat-hint>
+        </mat-form-field>
       </mat-card-content>
     </mat-card>
   </div>
+</div>
+<div style="position: fixed; bottom: 0; width:100%">
+<small style="display: flex; justify-content: center;">
+  Data version {{partCategories.version}}, last updated {{partCategories.lastUpdate}}
+</small>
 </div>

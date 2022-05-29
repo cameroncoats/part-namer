@@ -42,6 +42,16 @@ export class NameGenComponent implements OnInit {
     this.formValues = values;
   }
 
+  getPartName(fields):string{
+    if(this.name.value.template !== undefined){
+      // get part name from template
+      return this.getPartNameTemplate(fields,this.name.value.template);
+    } else {
+      // just return values comma separated
+      return this.getPartNameCommas(fields);
+    }
+  }
+
   getPartNameCommas(fields):string {
     let partName = "";
     // combine all field values into comma separated string
@@ -50,5 +60,14 @@ export class NameGenComponent implements OnInit {
      }
      // remove trailing comma
      return partName.slice(0,-2);
+  }
+
+  getPartNameTemplate(fields,template):string {
+    const templateMatcher = /{{\s?([^{}]*)\s?}}/g;
+    const text = template.replace(templateMatcher, (substring, value, index) => {
+      value = fields[value];
+      return value;
+    });
+    return text
   }
 }
