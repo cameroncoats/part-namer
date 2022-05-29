@@ -5,19 +5,32 @@ export interface PartCategory {
   fields: PartCategoryField[];
 }
 
-export type PartCategoryField = {
+interface PartCategoryField {
   name: string;
   description?: string;
+  label: string;
+  value: string;
+  type: string;
   placeholder?: string;
-  type: PartCategoryFieldType;
-  options?: string[];
-  value?: string;
-  mask?: string;
-};
+  options?: PartCategoryFieldSettings;
+  required: boolean;
+  validators: PartCategoryFieldValidators;
+}
 
-export enum PartCategoryFieldType {
-  freeText,
-  dropDown,
-  formatText,
-  fixedValue
-};
+interface PartCategoryFieldValidators {
+  min?: number;
+  max?: number;
+  required?: boolean;
+  requiredTrue?: boolean;
+  email?: boolean;
+  minLength?: boolean;
+  maxLength?: boolean;
+  pattern?: string;
+  nullValidator?: boolean;
+}
+interface PartCategoryFieldSettings {
+  min?: string;
+  max?: string;
+  step?: string;
+  icon?: string;
+}
