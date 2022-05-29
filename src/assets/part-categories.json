@@ -23,6 +23,7 @@
     {
       "id": 1,
       "name": "PLC IO",
+      "description": "IO cards/units/modules/slices",
       "fields": [
         {
           "name": "MPN",
@@ -33,6 +34,30 @@
           "name": "Category",
           "type": "fixedText",
           "value": "PLC IO"
+        },
+        {
+          "name": "IO Count",
+          "description": "Number of IO points",
+          "type": "number"
+        },
+        {
+          "name": "IO Type",
+          "description": "Type of IO points",
+          "type": "select",
+          "options": [
+            "DI",
+            "DO",
+            "DI/DO",
+            "AI",
+            "AO",
+            "IOL",
+            "S-DI",
+            "S-DO",
+            "RS485",
+            "RS232",
+            "RS422",
+            "Enc."
+          ]
         }
       ]
     }
