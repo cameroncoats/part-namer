@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PartCategoryService } from '../part-category.service';
-import { PartCategories } from '../../PartCategory';
+import { PartCategories, PartCategory } from '../../PartCategory';
 import {
   FormBuilder,
   FormArray,
@@ -18,6 +18,7 @@ export class NameGenComponent implements OnInit {
   partCategories: PartCategories;
   name = new FormControl();
 
+
   constructor(
     private partCategoryService: PartCategoryService,
     private fb: FormBuilder
@@ -30,5 +31,9 @@ export class NameGenComponent implements OnInit {
   getPartCategories(): void {
     this.partCategoryService.getPartCategories()
     .subscribe(partCategories => this.partCategories = partCategories);
+  }
+
+  displayFn(value?: PartCategory): string {
+    return value.name;
   }
 }
