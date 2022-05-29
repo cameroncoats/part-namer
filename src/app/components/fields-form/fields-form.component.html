@@ -1,2 +1,31 @@
-<p>fields-form works!</p>
-<pre>{{formFields}}</pre>
+<form [formGroup]="fieldsFormGroup">
+  <div *ngFor="let control of formFields">
+    <!--- Standard Input -->
+    <mat-form-field *ngIf="
+    [
+      'freeText',
+      'fixedText',
+      'number'
+    ].includes(control.type)
+  ">
+      <mat-label>{{ control.label || control.name }}</mat-label>
+      <input matInput
+
+        [type]="control.type"
+        [formControlName]="control.name"
+        [value]="control.value"
+      >
+      <mat-hint align="end" *ngIf="control.description">{{control.description}}</mat-hint>
+  </mat-form-field>
+  <!--- Toggle Input -->
+  <mat-form-field *ngIf="control.type === 'toggle'">
+    <mat-label *ngIf="control.label !== ''">{{ control.label }}</mat-label>
+    <mat-slide-toggle
+      [formControlName]="control.name"
+      [checked]="control.value"
+    ></mat-slide-toggle>
+    <mat-hint align="end" *ngIf="control.description">{{control.description}}</mat-hint>
+  </mat-form-field>
+  </div>
+</form>
+<pre>{{getPartName(fieldsFormGroup.getRawValue())}}</pre>
