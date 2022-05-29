@@ -18,8 +18,8 @@
             />
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option
-                *ngFor="let partCategory of partCategories"
-                [value]="partCategory.name"
+                *ngFor="let partCategory of partCategories.categories"
+                [value]="partCategory.id"
               >
                 {{ partCategory.name }}
               </mat-option>
@@ -29,33 +29,14 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+  <br>
+  <div fxLayout="row" fxLayoutAlign="center center" class="content" [ngIf]="name.value !== undefined">
     <mat-card class="card">
       <mat-card-header>
         Category Specific Fields
       </mat-card-header>
       <mat-card-content>
-        <form class="example-form">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Category</mat-label>
-            <input
-              type="text"
-              placeholder="Pick one"
-              aria-label="Category"
-              matInput
-              [formControl]="name"
-              [matAutocomplete]="auto"
-            />
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option
-                *ngFor="let partCategory of partCategories"
-                [value]="partCategory.name"
-              >
-                {{ partCategory.name }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </form>
+        <app-fields-form [formFields]="partCategories.categories[name.value].fields"></app-fields-form>
       </mat-card-content>
     </mat-card>
   </div>
