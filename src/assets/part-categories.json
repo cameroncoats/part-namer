@@ -1,4 +1,6 @@
 {
+  "version": "0.1",
+  "lastUpdate": "29/05/22",
   "categories": [
     {
       "id": 0,
@@ -23,7 +25,8 @@
     {
       "id": 1,
       "name": "PLC IO",
-      "description": "IO cards/units/modules/slices",
+      "description": "Cards/Units/Modules/Slices",
+      "template": "{{MPN}}, {{Category}}, {{IO Count}}x{{IO Type}}",
       "fields": [
         {
           "name": "MPN",
@@ -60,6 +63,148 @@
           ]
         }
       ]
+    },
+    {
+      "id":2,
+      "name":"Remote IO",
+      "description": "IO Blocks/ICE Modules",
+      "template": "{{MPN}}, {{Category}}, {{IO Count}}x{{IO Type}}",
+      "fields": [
+        {
+          "name": "MPN",
+          "description": "Manufacturer's Part Number",
+          "type": "freeText"
+        },
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "PLC IO"
+        },
+        {
+          "name": "IO Count",
+          "description": "Number of IO points",
+          "type": "number"
+        },
+        {
+          "name": "IO Type",
+          "description": "Type of IO points",
+          "type": "select",
+          "options": [
+            "DI",
+            "DO",
+            "DI/DO",
+            "AI",
+            "AO",
+            "IOL",
+            "S-DI",
+            "S-DO",
+            "RS485",
+            "RS232",
+            "RS422",
+            "Enc."
+          ]
+        }
+      ]
+    },
+    {
+      "id":3,
+      "name":"Terminal"
+    },
+    {
+      "id":4,
+      "name":"Relay"
+    },
+    {
+      "id":5,
+      "name":"Contactor"
+    },
+    {
+      "id":6,
+      "name":"Cable Connector",
+      "description": "Cards/Units/Modules/Slices",
+      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
+      "fields": [
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "Cable Connector"
+        },
+        {
+          "name": "Size",
+          "description": "External size",
+          "type": "select",
+          "options": [
+            "M8",
+            "M12",
+            "PowerCon",
+            "RJ45"
+          ]
+        },
+        {
+          "name": "Coding",
+          "description": "Mechanical Coding/Keying, Pin Arrangement",
+          "type": "select",
+          "options": [
+            "",
+            "A",
+            "D",
+            "L"
+          ]
+        },
+        {
+          "name": "Gender",
+          "description": "Connector gender (pin direction)",
+          "type": "select",
+          "options": [
+            "M",
+            "F",
+            "X"
+          ]
+        },
+        {
+          "name": "Pole Count",
+          "description": "Number of pins",
+          "type": "number"
+        },
+        {
+          "name": "Termination",
+          "description": "Method of termination",
+          "type": "select",
+          "options": [
+            "Screw",
+            "IDC",
+            "Push In"
+          ]
+        }
+      ]
+    },
+    {
+      "id":7,
+      "name":"Flange Connector"
+    },
+    {
+      "id":8,
+      "name":"PCB Connector"
+    },
+    {
+      "id":9,
+      "name":"PCB Terminal"
+    },
+    {
+      "id":10,
+      "name":"Lead"
+    },
+    {
+      "id":11,
+      "name":"Sensor"
+    },
+    {
+      "id":12,
+      "name":"Safe Edge"
+    },
+    {
+      "id":13,
+      "name":"Switch"
     }
   ]
 }
