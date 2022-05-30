@@ -78,7 +78,7 @@
         {
           "name": "Category",
           "type": "fixedText",
-          "value": "PLC IO"
+          "value": "Remote IO"
         },
         {
           "name": "IO Count",
@@ -121,7 +121,7 @@
     {
       "id":6,
       "name":"Cable Connector",
-      "description": "Cards/Units/Modules/Slices",
+      "description": "Connector for direct mounting to cables",
       "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
       "fields": [
         {
@@ -180,30 +180,149 @@
     },
     {
       "id":7,
-      "name":"Flange Connector"
+      "name":"Flange Connector",
+      "description":"Connector for panel/flange mounting",
+      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
+      "fields": [
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "Flange Connector"
+        },
+        {
+          "name": "Size",
+          "description": "External size",
+          "type": "select",
+          "options": [
+            "M8",
+            "M12",
+            "PowerCon",
+            "RJ45",
+            "USB"
+          ]
+        },
+        {
+          "name": "Coding",
+          "description": "Mechanical Coding/Keying, Pin Arrangement",
+          "type": "select",
+          "options": [
+            "",
+            "A",
+            "D",
+            "L"
+          ]
+        },
+        {
+          "name": "Gender",
+          "description": "Connector gender (pin direction)",
+          "type": "select",
+          "options": [
+            "M",
+            "F",
+            "X",
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Pole Count",
+          "description": "Number of pins",
+          "type": "number"
+        },
+        {
+          "name": "Termination",
+          "description": "Method of termination",
+          "type": "select",
+          "options": [
+            "Feed Through",
+            "Bare Wires",
+            "Screw",
+            "IDC",
+            "Push In"
+          ]
+        }
+      ]
     },
     {
       "id":8,
-      "name":"PCB Connector"
+      "name":"PCB Connector",
+      "description": "Connector for plugging into PCB header",
+      "fields": [
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "PCB Connector"
+        },
+        {
+          "name": "Series",
+          "description": "Mfg/Product Line",
+          "type": "select",
+          "options": [
+            "Pxc/MC",
+            "Pxc/MCV",
+            "Dupont",
+            "MiniFit",
+            "MicroFit"
+          ]
+        },
+        {
+          "name": "Pole Count",
+          "description": "Number of pins",
+          "type": "number"
+        },
+        {
+          "name": "Pitch",
+          "description": "Pin spacing (mm)",
+          "type": "number"
+        },
+        {
+          "name": "Gender",
+          "description": "Connector gender (pin direction)",
+          "type": "select",
+          "options": [
+            "M",
+            "F",
+            "X",
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Flange",
+          "description": "Locking flange type (if present)",
+          "type": "select",
+          "options": [
+            {"value":"","label":"None"},
+            {"value":"SF","label":"Screw Flange"},
+            {"value":"LF","label":"Clip/Tool-Less Flange"}
+          ]
+        }
+      ]
     },
     {
       "id":9,
-      "name":"PCB Terminal"
+      "name":"PCB Header",
+      "description":  "Connector soldered directly to PCB"
     },
     {
       "id":10,
-      "name":"Lead"
+      "name":"PCB Terminal",
+      "description": "Terminal soldered directly to PCB"
     },
     {
       "id":11,
-      "name":"Sensor"
+      "name":"Lead"
     },
     {
       "id":12,
-      "name":"Safe Edge"
+      "name":"Sensor"
     },
     {
       "id":13,
+      "name":"Safe Edge"
+    },
+    {
+      "id":14,
       "name":"Switch"
     }
   ]
