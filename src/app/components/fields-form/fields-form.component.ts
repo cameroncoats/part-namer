@@ -25,8 +25,14 @@ export class FieldsFormComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.formFields !== undefined) {
+      // clear form
+      Object.keys(this.fieldsFormGroup.controls).forEach(key => {
+        this.fieldsFormGroup.removeControl(key);
+
+      });
+      // create new form
       this.createForm(this.formFields);
-      console.log(this.formFields);
+
     }
     this.fieldsFormGroup.valueChanges.subscribe(val => {
         this.formValues.emit(this.fieldsFormGroup.getRawValue());
@@ -35,7 +41,7 @@ export class FieldsFormComponent implements OnChanges {
 
   createForm(controls: PartCategoryField[]) {
     for (const control of controls) {
-      console.log("added a field! :",control.name)
+
       const validatorsToAdd = [];
       if(control.validators !== undefined){
       for (const [key, value] of Object.entries(control.validators)) {
