@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldsFormComponent } from './components/fields-form/fields-form.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,11 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatSelectModule,
     ClipboardModule
   ],
-  providers: [],
+  providers: [{
+    provide: APP_BASE_HREF,
+    useFactory: (s: PlatformLocation) => s.getBaseHrefFromDOM(),
+    deps: [PlatformLocation]
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
