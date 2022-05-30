@@ -1,32 +1,12 @@
 {
-  "version": "0.2",
+  "version": "0.5",
   "lastUpdate": "30/05/22",
   "categories": [
     {
-      "id": 0,
-      "name": "PLC CPU",
-      "description": "Main Unit/Processor/CPU",
-      "fields": [
-        {
-          "name": "MPN",
-          "description": "Manufacturer's Part Number",
-          "type": "freeText",
-          "validators": {
-            "required": true
-          }
-        },
-        {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "PLC CPU"
-        }
-      ]
-    },
-    {
       "id": 1,
-      "name": "PLC IO",
-      "description": "Cards/Units/Modules/Slices",
-      "template": "{{MPN}}, {{Category}}, {{IO Count}}x{{IO Type}}",
+      "name": "IO Modules",
+      "description": "Input/Output Cards/Units/Modules/Slices/Blocks",
+      "template": "{{MPN}}, {{Mounting Type}}, {{IO Count}}x{{IO Type}}",
       "fields": [
         {
           "name": "MPN",
@@ -34,9 +14,12 @@
           "type": "freeText"
         },
         {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "PLC IO"
+          "name": "Mounting Type",
+          "type": "select",
+          "options": [
+            {"value":"Remote IO","label":"Remote IO (not attached to PLC)"},
+            {"value":"PLC IO","label":"PLC IO (directly attached to PLC)"}
+          ]
         },
         {
           "name": "IO Count",
@@ -67,7 +50,7 @@
           "description": "IO type/polarity",
           "type": "select",
           "options": [
-            {"value":"","label":"None/Push Pull"},
+            {"value":"","label":"None or Push/Pull"},
             "NPN",
             "PNP"
           ]
@@ -75,67 +58,44 @@
       ]
     },
     {
-      "id":2,
-      "name":"Remote IO",
-      "description": "IO Blocks/ICE Modules",
-      "template": "{{MPN}}, {{Category}}, {{IO Count}}x{{IO Type}}",
-      "fields": [
+      "id":3,
+      "name":"Terminal",
+      "description":"DIN rail terminals for panel wiring",
+      "template":"Terminal, {{Levels}}L, {{Max Wire Size}}mm{{Type}}",
+      "fields":[
         {
-          "name": "MPN",
-          "description": "Manufacturer's Part Number",
-          "type": "freeText"
-        },
-        {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Remote IO"
-        },
-        {
-          "name": "IO Count",
-          "description": "Number of IO points",
+          "name":"Levels",
+          "description":"Number of Levels",
           "type": "number"
         },
         {
-          "name": "IO Type",
-          "description": "Type of IO points",
-          "type": "select",
-          "options": [
-            "DI",
-            "DO",
-            "DI/DO",
-            "AI",
-            "AO",
-            "IOL",
-            "S-DI",
-            "S-DO",
-            "RS485",
-            "RS232",
-            "RS422",
-            "Enc."
+          "name":"Max Wire Size",
+          "description":"Maximum wire size w/ insulated ferrule (mm^2)",
+          "type":"number"
+        },
+        {
+          "name":"Type",
+          "description":"Type of terminal",
+          "type":"select",
+          "options":[
+            {"label":"Standard Terminal","value":""},
+            {"label":"Earth Terminal","value":", Earth"},
+            {"label":"Internally linked/distribution","value":", PT"},
+            {"label":"Knife disconnect/link","value":", MT"}
           ]
         }
       ]
     },
     {
-      "id":3,
-      "name":"Terminal",
-      "description":"DIN rail terminal for panel wiring"
-    },
-    {
       "id":4,
-      "name":"Relay",
-      "description":"Signal or logic relay"
-    },
-    {
-      "id":5,
-      "name":"Contactor",
-      "description":"Power contactor",
-      "template":"{{Category}}, {{Current Rating}}A, {{Coil Voltage}}V Coil, {{Power Contacts}}{{Aux Contacts}}",
+      "name":"Contactor/Relay",
+      "description":"Power contactors & signal relays",
+      "template":"{{Type}}, {{Current Rating}}A, {{Coil Voltage}}V Coil, {{Power Contacts}}{{Aux Contacts}}",
       "fields":[
         {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Contactor"
+          "name": "Type",
+          "type": "select",
+          "options": ["Contactor", "Relay"]
         },
         {
           "name": "Current Rating",
@@ -190,15 +150,18 @@
       ]
     },
     {
-      "id":6,
-      "name":"Cable Connector",
-      "description": "Connector for direct mounting to cables",
-      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
+      "id":5,
+      "name":"Industrial Connector",
+      "description": "Industrial connectors for cable/panel mounting",
+      "template": "{{Mounting Type}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}P, {{Termination}}",
       "fields": [
         {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Cable Connector"
+          "name": "Mounting Type",
+          "type": "select",
+          "options":[
+            {"value":"Cable Connector","label":"Attached directly to cable"},
+            {"value":"Flange Connector","label":"Flange/panel mount"}
+          ]
         },
         {
           "name": "Size",
@@ -251,77 +214,16 @@
     },
     {
       "id":7,
-      "name":"Flange Connector",
-      "description":"Connector for panel/flange mounting",
-      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
-      "fields": [
-        {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Flange Connector"
-        },
-        {
-          "name": "Size",
-          "description": "External size",
-          "type": "select",
-          "options": [
-            "M8",
-            "M12",
-            "PowerCon",
-            "RJ45",
-            "USB"
-          ]
-        },
-        {
-          "name": "Coding",
-          "description": "Mechanical Coding/Keying, Pin Arrangement",
-          "type": "select",
-          "options": [
-            "",
-            "A",
-            "D",
-            "L"
-          ]
-        },
-        {
-          "name": "Gender",
-          "description": "Connector gender (pin direction)",
-          "type": "select",
-          "options": [
-            "M",
-            "F",
-            "X"
-          ]
-        },
-        {
-          "name": "Pole Count",
-          "description": "Number of pins",
-          "type": "number"
-        },
-        {
-          "name": "Termination",
-          "description": "Method of termination",
-          "type": "select",
-          "options": [
-            "Feed Through",
-            "Bare Wires",
-            "Screw",
-            "IDC",
-            "Push In"
-          ]
-        }
-      ]
-    },
-    {
-      "id":8,
-      "name":"PCB Header/Connector",
-      "description": "PCB/Cable mounted connectors + headers",
+      "name":"Wire to PCB",
+      "description": "PCB/Cable mounted connectors/headers/terminals",
+      "template":"{{Type}}, {{Pole Count}}P {{Gender}} {{Series}}-{{Pitch}}mm{{Termination}}{{Flange}}",
       "fields": [
         {
           "name": "Type",
           "type": "select",
           "options":[
-            {"label":"Header (Soldered to PCB)","value":"PCB Header"},
+            {"label":"Header (Soldered to PCB, used with connector)","value":"PCB Header"},
+            {"label":"Terminal (Soldered to PCB, wired to directly)","value":"PCB Terminal"},
             {"label":"Connector (Mounted to Cable)","value":"PCB Connector"}
           ]
         },
@@ -330,11 +232,12 @@
           "description": "Mfg/Product Line",
           "type": "select",
           "options": [
-            "PX/MC",
-            "PX/MCV",
+            "MC",
+            "MCV",
+            "SPTAF",
             "Pin Header",
-            "MX/MiniFit",
-            "MX/MicroFit"
+            "MiniFit",
+            "MicroFit"
           ]
         },
         {
@@ -349,12 +252,12 @@
         },
         {
           "name": "Gender",
-          "description": "Connector gender (pin direction)",
+          "description": "Pin Direction - leave blank for terminals",
           "type": "select",
           "options": [
-            "M",
-            "F",
-            "X",
+            "Male",
+            "Female",
+            "",
             "Plug",
             "Socket"
           ]
@@ -365,8 +268,8 @@
           "type": "select",
           "options": [
             {"value":"","label":"None"},
-            {"value":"SF","label":"Screw Flange"},
-            {"value":"LF","label":"Clip/Tool-Less Flange"}
+            {"value":", SF","label":"Screw Flange"},
+            {"value":", LF","label":"Clip/Tool-Less Flange"}
           ]
         },
         {
@@ -375,34 +278,111 @@
           "type": "select",
           "options": [
             {"value":"","label":"N/A"},
-            {"value":"THT","label":"Thru-Hole (Header)"},
-            {"value":"SMT","label":"Surface Mount (Header)"},
-            {"value":"Screw","label":"Screw Terminal (Connector)"},
-            {"value":"PIT","label":"Push in Terminal (Connector)"},
-            {"value":"IDC","label":"Insulation Displacement (Connector)"},
-            {"value":"Crimp","label":"Crimp Terminals (Connector)"}
+            {"value":", THT","label":"Thru-Hole (Header)"},
+            {"value":", SMT","label":"Surface Mount (Header)"},
+            {"value":", Screw","label":"Screw Terminal (Connector/Terminal)"},
+            {"value":", PIT","label":"Push in Terminal (Connector/Terminal)"},
+            {"value":", IDC","label":"Insulation Displacement (Connector/Terminal)"},
+            {"value":", Crimp","label":"Crimp Terminals (Connector/Terminal)"}
           ]
         }
       ]
     },
     {
       "id":9,
-      "name":"PCB Terminal",
-      "description": "Terminal soldered directly to PCB"
-    },
-    {
-      "id":10,
       "name":"Lead",
-      "description":"Manufactured cable assembly with at least one connector"
+      "description":"Manufactured cable assembly with at least one connector",
+      "template":"{{Type}}, {{Connector 1}}{{Connector 2}}, {{Poles}}P, {{Length}}m",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "select",
+          "options":[
+            {"label":"Sensor","value":"Sensor Lead"},
+            {"label":"Power","value":"Power Lead"},
+            {"label":"Data","value":"Data Lead"}
+          ]
+        },
+        {
+          "name": "Connector 1",
+          "description":"First / Male Connector",
+          "type": "select",
+          "options": [
+            "M8",
+            "M12",
+            "PowerCon",
+            "RJ45",
+            "CEE16",
+            "BS1363",
+            {"value":"Wire","label":"Bare Wires"}
+          ]
+        },
+        {
+          "name": "Connector 2",
+          "description":"Second / Female Connector",
+          "type": "select",
+          "options": [
+            {"value":"","label":"Same as first connector"},
+            {"value":"-M8","label":"M8"},
+            {"value":"-M12","label":"M12"},
+            {"value":"-PowerCon","label":"PowerCon"},
+            {"value":"-RJ45","label":"RJ45"},
+            {"value":"-CEE16","label":"CEE16"},
+            {"value":"-BS1363","label":"BS1363"},
+            {"value":"-Wire","label":"Bare Wires"}
+          ]
+        },
+        {
+          "name": "Poles",
+          "description": "Number of poles",
+          "type": "number"
+        },
+        {
+          "name": "Length",
+          "description": "Overall length in meters",
+          "type":"number"
+        }
+      ]
+
     },
     {
-      "id":11,
-      "name":"Sensor"
-    },
-    {
-      "id":13,
-      "name":"Switch",
-      "description":"Mechanical switches for operator control eg. e-stop, push button"
+      "id":12,
+      "name": "Motor",
+      "description": "Motor/Motor Gearbox",
+      "template":"{{Type}} ({{Series}}), {{Power Rating}}W, {{Gear Ratio}}, {{Braking}}",
+      "fields":[
+        {
+          "name": "Type",
+          "type": "select",
+          "options":[
+            {"label":"Stepper","value":"Stepper Motor"},
+            {"label":"Brushless DC","value":"BLDC Motor"}
+          ]
+        },
+        {
+          "name": "Series",
+          "type": "freeText",
+          "description": "Manufacturer's series eg BLV, AZ"
+        },
+        {
+          "name": "Power Rating",
+          "type": "number",
+          "description": "Rated power in watts"
+        },
+        {
+          "name": "Gear Ratio",
+          "type": "freeText",
+          "description": "If ungeared leave blank, otherwise enter ratio"
+        },
+        {
+          "name": "Braking",
+          "type": "select",
+          "options":[
+            "Braked",
+            "Unbraked"
+          ]
+        }
+      ]
     }
   ]
 }
