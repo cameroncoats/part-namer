@@ -290,9 +290,7 @@
           "options": [
             "M",
             "F",
-            "X",
-            "A",
-            "B"
+            "X"
           ]
         },
         {
@@ -316,24 +314,27 @@
     },
     {
       "id":8,
-      "name":"PCB Connector",
-      "description": "Connector for plugging into PCB header",
+      "name":"PCB Header/Connector",
+      "description": "PCB/Cable mounted connectors + headers",
       "fields": [
         {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "PCB Connector"
+          "name": "Type",
+          "type": "select",
+          "options":[
+            {"label":"Header (Soldered to PCB)","value":"PCB Header"},
+            {"label":"Connector (Mounted to Cable)","value":"PCB Connector"}
+          ]
         },
         {
           "name": "Series",
           "description": "Mfg/Product Line",
           "type": "select",
           "options": [
-            "Pxc/MC",
-            "Pxc/MCV",
-            "Dupont",
-            "MiniFit",
-            "MicroFit"
+            "PX/MC",
+            "PX/MCV",
+            "Pin Header",
+            "MX/MiniFit",
+            "MX/MicroFit"
           ]
         },
         {
@@ -354,8 +355,8 @@
             "M",
             "F",
             "X",
-            "A",
-            "B"
+            "Plug",
+            "Socket"
           ]
         },
         {
@@ -367,26 +368,35 @@
             {"value":"SF","label":"Screw Flange"},
             {"value":"LF","label":"Clip/Tool-Less Flange"}
           ]
+        },
+        {
+          "name": "Termination",
+          "description": "Type of termination",
+          "type": "select",
+          "options": [
+            {"value":"","label":"N/A"},
+            {"value":"THT","label":"Thru-Hole (Header)"},
+            {"value":"SMT","label":"Surface Mount (Header)"},
+            {"value":"Screw","label":"Screw Terminal (Connector)"},
+            {"value":"PIT","label":"Push in Terminal (Connector)"},
+            {"value":"IDC","label":"Insulation Displacement (Connector)"},
+            {"value":"Crimp","label":"Crimp Terminals (Connector)"}
+          ]
         }
       ]
     },
     {
       "id":9,
-      "name":"PCB Header",
-      "description":  "Connector soldered directly to PCB"
-    },
-    {
-      "id":10,
       "name":"PCB Terminal",
       "description": "Terminal soldered directly to PCB"
     },
     {
-      "id":11,
+      "id":10,
       "name":"Lead",
       "description":"Manufactured cable assembly with at least one connector"
     },
     {
-      "id":12,
+      "id":11,
       "name":"Sensor"
     },
     {
