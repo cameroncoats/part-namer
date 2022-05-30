@@ -1,32 +1,12 @@
 {
-  "version": "0.3",
+  "version": "0.4",
   "lastUpdate": "30/05/22",
   "categories": [
     {
-      "id": 0,
-      "name": "PLC CPU",
-      "description": "Main Unit/Processor/CPU",
-      "fields": [
-        {
-          "name": "MPN",
-          "description": "Manufacturer's Part Number",
-          "type": "freeText",
-          "validators": {
-            "required": true
-          }
-        },
-        {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "PLC CPU"
-        }
-      ]
-    },
-    {
       "id": 1,
-      "name": "PLC IO",
-      "description": "Cards/Units/Modules/Slices",
-      "template": "{{MPN}}, {{Category}}, {{IO Count}}x{{IO Type}}",
+      "name": "IO Modules",
+      "description": "Input/Output Cards/Units/Modules/Slices/Blocks",
+      "template": "{{MPN}}, {{Mounting Type}}, {{IO Count}}x{{IO Type}}",
       "fields": [
         {
           "name": "MPN",
@@ -34,9 +14,12 @@
           "type": "freeText"
         },
         {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "PLC IO"
+          "name": "Mounting Type",
+          "type": "select",
+          "options": [
+            {"value":"Remote IO","label":"Remote IO (not attached to PLC)"},
+            {"value":"PLC IO","label":"PLC IO (directly attached to PLC)"}
+          ]
         },
         {
           "name": "IO Count",
@@ -67,51 +50,9 @@
           "description": "IO type/polarity",
           "type": "select",
           "options": [
-            {"value":"","label":"None/Push Pull"},
+            {"value":"","label":"None or Push/Pull"},
             "NPN",
             "PNP"
-          ]
-        }
-      ]
-    },
-    {
-      "id":2,
-      "name":"Remote IO",
-      "description": "IO Blocks/ICE Modules",
-      "template": "{{MPN}}, {{Category}}, {{IO Count}}x{{IO Type}}",
-      "fields": [
-        {
-          "name": "MPN",
-          "description": "Manufacturer's Part Number",
-          "type": "freeText"
-        },
-        {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Remote IO"
-        },
-        {
-          "name": "IO Count",
-          "description": "Number of IO points",
-          "type": "number"
-        },
-        {
-          "name": "IO Type",
-          "description": "Type of IO points",
-          "type": "select",
-          "options": [
-            "DI",
-            "DO",
-            "DI/DO",
-            "AI",
-            "AO",
-            "IOL",
-            "S-DI",
-            "S-DO",
-            "RS485",
-            "RS232",
-            "RS422",
-            "Enc."
           ]
         }
       ]
@@ -120,25 +61,27 @@
       "id":3,
       "name":"Terminal",
       "description":"DIN rail terminals for panel wiring",
+      "template":"Terminal, {{Levels}}L, {{Max Wire Size}}mm{{Type}}",
       "fields":[
         {
-          "name":"Number of levels",
+          "name":"Levels",
+          "description":"Number of Levels",
           "type": "number"
         },
         {
-          "name":"Maximum wire size",
-          "descrpiption":"Maximum wire size w/ insulated ferrule (mm^2)",
+          "name":"Max Wire Size",
+          "description":"Maximum wire size w/ insulated ferrule (mm^2)",
           "type":"number"
         },
         {
           "name":"Type",
-          "descrpiption":"Type of terminal",
+          "description":"Type of terminal",
           "type":"select",
           "options":[
             {"label":"Standard Terminal","value":""},
-            {"label":"Earth Terminal","value":"Earth"},
-            {"label":"Internally linked/distribution","value":"PT"},
-            {"label":"Knife disconnect/link","value":"MT"}
+            {"label":"Earth Terminal","value":", Earth"},
+            {"label":"Internally linked/distribution","value":", PT"},
+            {"label":"Knife disconnect/link","value":", MT"}
           ]
         }
       ]
@@ -147,11 +90,11 @@
       "id":4,
       "name":"Contactor/Relay",
       "description":"Power contactors & signal relays",
-      "template":"{{Category}}, {{Current Rating}}A, {{Coil Voltage}}V Coil, {{Power Contacts}}{{Aux Contacts}}",
+      "template":"{{Type}}, {{Current Rating}}A, {{Coil Voltage}}V Coil, {{Power Contacts}}{{Aux Contacts}}",
       "fields":[
         {
           "name": "Type",
-          "type": "Select",
+          "type": "select",
           "options": ["Contactor", "Relay"]
         },
         {
@@ -208,14 +151,17 @@
     },
     {
       "id":5,
-      "name":"Cable Connector",
-      "description": "Connector for direct mounting to cables",
-      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
+      "name":"Industrial Connector",
+      "description": "Industrial connectors for cable/panel mounting",
+      "template": "{{Mounting Type}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}P, {{Termination}}",
       "fields": [
         {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Cable Connector"
+          "name": "Mounting Type",
+          "type": "select",
+          "options":[
+            {"value":"Cable Connector","label":"Attached directly to cable"},
+            {"value":"Flange Connector","label":"Flange/panel mount"}
+          ]
         },
         {
           "name": "Size",
@@ -259,69 +205,6 @@
           "description": "Method of termination",
           "type": "select",
           "options": [
-            "Screw",
-            "IDC",
-            "Push In"
-          ]
-        }
-      ]
-    },
-    {
-      "id":6,
-      "name":"Flange Connector",
-      "description":"Connector for panel/flange mounting",
-      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
-      "fields": [
-        {
-          "name": "Category",
-          "type": "fixedText",
-          "value": "Flange Connector"
-        },
-        {
-          "name": "Size",
-          "description": "External size",
-          "type": "select",
-          "options": [
-            "M8",
-            "M12",
-            "PowerCon",
-            "RJ45",
-            "USB"
-          ]
-        },
-        {
-          "name": "Coding",
-          "description": "Mechanical Coding/Keying, Pin Arrangement",
-          "type": "select",
-          "options": [
-            "",
-            "A",
-            "D",
-            "L"
-          ]
-        },
-        {
-          "name": "Gender",
-          "description": "Connector gender (pin direction)",
-          "type": "select",
-          "options": [
-            "M",
-            "F",
-            "X"
-          ]
-        },
-        {
-          "name": "Pole Count",
-          "description": "Number of pins",
-          "type": "number"
-        },
-        {
-          "name": "Termination",
-          "description": "Method of termination",
-          "type": "select",
-          "options": [
-            "Feed Through",
-            "Bare Wires",
             "Screw",
             "IDC",
             "Push In"
