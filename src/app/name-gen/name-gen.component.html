@@ -1,10 +1,10 @@
 <div class="container">
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
-    <mat-card class="card" *ngIf="isObject(partCategories)">
+    <mat-card class="card" *ngIf="isObject(partCategories)" fxFlex="100%" fxFlex.md="75%" fxFlex.lg="50%">
       <mat-card-header>Choose a Category:</mat-card-header>
       <mat-card-content>
-        <form class="example-form">
-          <mat-form-field class="example-full-width">
+        <form>
+          <mat-form-field class="full-width">
             <mat-label>Category</mat-label>
             <input
               type="text"
@@ -20,7 +20,7 @@
                 [value]="partCategory"
               >
               <span>{{partCategory.name}}</span>
-              <span *ngIf="partCategory.description">|<small>{{partCategory.description}}</small></span>
+              <span *ngIf="partCategory.description"><small> - {{partCategory.description}}</small></span>
 
               </mat-option>
             </mat-autocomplete>
@@ -31,7 +31,7 @@
   </div>
   <br>
   <div fxLayout="row" fxLayoutAlign="center center" class="content"  *ngIf="isObject(name.value)">
-    <mat-card class="card">
+    <mat-card class="card" fxFlex="100%" fxFlex.md="75%" fxFlex.lg="50%">
       <mat-card-header>{{name.value.name}} Fields:</mat-card-header>
       <mat-card-content>
         <app-fields-form [formFields]="name.value.fields" (formValues)="valuesChanged($event)"></app-fields-form>
@@ -40,10 +40,10 @@
   </div>
   <br />
   <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="isObject(name.value)">
-    <mat-card>
+    <mat-card fxFlex="100%" fxFlex.md="75%" fxFlex.lg="50%">
       <mat-card-header>Part Name:</mat-card-header>
       <mat-card-content>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="full-width">
           <textarea matInput readonly="true" style="resize:none"  [cdkCopyToClipboard]="getPartName(formValues)">
             {{getPartName(formValues)}}
           </textarea>
