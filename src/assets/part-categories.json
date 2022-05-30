@@ -1,6 +1,6 @@
 {
-  "version": "0.1",
-  "lastUpdate": "29/05/22",
+  "version": "0.2",
+  "lastUpdate": "30/05/22",
   "categories": [
     {
       "id": 0,
@@ -61,6 +61,16 @@
             "RS422",
             "Enc."
           ]
+        },
+        {
+          "name": "Polarity",
+          "description": "IO type/polarity",
+          "type": "select",
+          "options": [
+            {"value":"","label":"None/Push Pull"},
+            "NPN",
+            "PNP"
+          ]
         }
       ]
     },
@@ -78,7 +88,7 @@
         {
           "name": "Category",
           "type": "fixedText",
-          "value": "PLC IO"
+          "value": "Remote IO"
         },
         {
           "name": "IO Count",
@@ -108,20 +118,81 @@
     },
     {
       "id":3,
-      "name":"Terminal"
+      "name":"Terminal",
+      "description":"DIN rail terminal for panel wiring"
     },
     {
       "id":4,
-      "name":"Relay"
+      "name":"Relay",
+      "description":"Signal or logic relay"
     },
     {
       "id":5,
-      "name":"Contactor"
+      "name":"Contactor",
+      "description":"Power contactor",
+      "template":"{{Category}}, {{Current Rating}}A, {{Coil Voltage}}V Coil, {{Power Contacts}}{{Aux Contacts}}",
+      "fields":[
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "Contactor"
+        },
+        {
+          "name": "Current Rating",
+          "description": "Main contact rated current",
+          "type": "number"
+        },
+        {
+          "name": "Coil Voltage",
+          "description": "Rated input voltage for coil",
+          "type": "number"
+        },
+        {
+          "name": "Power Contacts",
+          "description": "Arrangement of main/power contacts",
+          "type": "select",
+          "options": [
+            "1NO",
+            "1NC",
+            "2NO",
+            "2NC",
+            "3NO",
+            "3NC",
+            "4NO",
+            "4NC",
+            "1NO",
+            "1NO/1NC",
+            "2NO/2NC",
+            "3NO/1NC",
+            "1NO/3NC"
+          ]
+        },
+        {
+          "name": "Aux Contacts",
+          "description": "Arrangement of auxiliary contacts",
+          "type": "select",
+          "options": [
+            {"value":"","label":"No Auxiliaries"},
+            {"value":"+(1NC)","label":"1NC"},
+            {"value":"+(2NO)","label":"2NO"},
+            {"value":"+(2NC)","label":"2NC"},
+            {"value":"+(3NO)","label":"3NO"},
+            {"value":"+(3NC)","label":"3NC"},
+            {"value":"+(4NO)","label":"4NO"},
+            {"value":"+(4NC)","label":"4NC"},
+            {"value":"+(1NO)","label":"1NO"},
+            {"value":"+(1NO/1NC)","label":"1NO/1NC"},
+            {"value":"+(2NO/2NC)","label":"2NO/2NC"},
+            {"value":"+(3NO/1NC)","label":"3NO/1NC"},
+            {"value":"+(1NO/3NC)","label":"1NO/3NC"}
+          ]
+        }
+      ]
     },
     {
       "id":6,
       "name":"Cable Connector",
-      "description": "Cards/Units/Modules/Slices",
+      "description": "Connector for direct mounting to cables",
       "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
       "fields": [
         {
@@ -180,31 +251,148 @@
     },
     {
       "id":7,
-      "name":"Flange Connector"
+      "name":"Flange Connector",
+      "description":"Connector for panel/flange mounting",
+      "template": "{{Category}}, {{Size}}{{Coding}}-{{Gender}}, {{Pole Count}}, {{Termination}}",
+      "fields": [
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "Flange Connector"
+        },
+        {
+          "name": "Size",
+          "description": "External size",
+          "type": "select",
+          "options": [
+            "M8",
+            "M12",
+            "PowerCon",
+            "RJ45",
+            "USB"
+          ]
+        },
+        {
+          "name": "Coding",
+          "description": "Mechanical Coding/Keying, Pin Arrangement",
+          "type": "select",
+          "options": [
+            "",
+            "A",
+            "D",
+            "L"
+          ]
+        },
+        {
+          "name": "Gender",
+          "description": "Connector gender (pin direction)",
+          "type": "select",
+          "options": [
+            "M",
+            "F",
+            "X",
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Pole Count",
+          "description": "Number of pins",
+          "type": "number"
+        },
+        {
+          "name": "Termination",
+          "description": "Method of termination",
+          "type": "select",
+          "options": [
+            "Feed Through",
+            "Bare Wires",
+            "Screw",
+            "IDC",
+            "Push In"
+          ]
+        }
+      ]
     },
     {
       "id":8,
-      "name":"PCB Connector"
+      "name":"PCB Connector",
+      "description": "Connector for plugging into PCB header",
+      "fields": [
+        {
+          "name": "Category",
+          "type": "fixedText",
+          "value": "PCB Connector"
+        },
+        {
+          "name": "Series",
+          "description": "Mfg/Product Line",
+          "type": "select",
+          "options": [
+            "Pxc/MC",
+            "Pxc/MCV",
+            "Dupont",
+            "MiniFit",
+            "MicroFit"
+          ]
+        },
+        {
+          "name": "Pole Count",
+          "description": "Number of pins",
+          "type": "number"
+        },
+        {
+          "name": "Pitch",
+          "description": "Pin spacing (mm)",
+          "type": "number"
+        },
+        {
+          "name": "Gender",
+          "description": "Connector gender (pin direction)",
+          "type": "select",
+          "options": [
+            "M",
+            "F",
+            "X",
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Flange",
+          "description": "Locking flange type (if present)",
+          "type": "select",
+          "options": [
+            {"value":"","label":"None"},
+            {"value":"SF","label":"Screw Flange"},
+            {"value":"LF","label":"Clip/Tool-Less Flange"}
+          ]
+        }
+      ]
     },
     {
       "id":9,
-      "name":"PCB Terminal"
+      "name":"PCB Header",
+      "description":  "Connector soldered directly to PCB"
     },
     {
       "id":10,
-      "name":"Lead"
+      "name":"PCB Terminal",
+      "description": "Terminal soldered directly to PCB"
     },
     {
       "id":11,
-      "name":"Sensor"
+      "name":"Lead",
+      "description":"Manufactured cable assembly with at least one connector"
     },
     {
       "id":12,
-      "name":"Safe Edge"
+      "name":"Sensor"
     },
     {
       "id":13,
-      "name":"Switch"
+      "name":"Switch",
+      "description":"Mechanical switches for operator control eg. e-stop, push button"
     }
   ]
 }

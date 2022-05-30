@@ -94,4 +94,10 @@ export class FieldsFormComponent implements OnChanges {
     this.formValues.emit(this.fieldsFormGroup.getRawValue());
   }
 
+  getSelectObject(option: any){
+    if(typeof option == 'object') return option;
+    else return {value:option,label:option};
+
+  }
+
 }

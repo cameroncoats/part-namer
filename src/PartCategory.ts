@@ -18,7 +18,8 @@ export interface PartCategoryField {
   value: string;
   type: string;
   placeholder?: string;
-  options?: PartCategoryFieldSettings;
+  settings?: PartCategoryFieldSettings;
+  options?: string|Record<string,1>;
   required: boolean;
   validators: PartCategoryFieldValidators;
 }
