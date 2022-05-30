@@ -1,5 +1,5 @@
 {
-  "version": "0.4",
+  "version": "0.5",
   "lastUpdate": "30/05/22",
   "categories": [
     {
@@ -216,6 +216,7 @@
       "id":7,
       "name":"Wire to PCB",
       "description": "PCB/Cable mounted connectors/headers/terminals",
+      "template":"{{Type}}, {{Pole Count}}P {{Gender}} {{Series}}-{{Pitch}}mm{{Termination}}{{Flange}}",
       "fields": [
         {
           "name": "Type",
@@ -231,11 +232,12 @@
           "description": "Mfg/Product Line",
           "type": "select",
           "options": [
-            "PX/MC",
-            "PX/MCV",
+            "MC",
+            "MCV",
+            "SPTAF",
             "Pin Header",
-            "MX/MiniFit",
-            "MX/MicroFit"
+            "MiniFit",
+            "MicroFit"
           ]
         },
         {
@@ -250,12 +252,12 @@
         },
         {
           "name": "Gender",
-          "description": "Connector gender (pin direction)",
+          "description": "Pin Direction - leave blank for terminals",
           "type": "select",
           "options": [
-            "M",
-            "F",
-            "X",
+            "Male",
+            "Female",
+            "",
             "Plug",
             "Socket"
           ]
@@ -266,8 +268,8 @@
           "type": "select",
           "options": [
             {"value":"","label":"None"},
-            {"value":"SF","label":"Screw Flange"},
-            {"value":"LF","label":"Clip/Tool-Less Flange"}
+            {"value":", SF","label":"Screw Flange"},
+            {"value":", LF","label":"Clip/Tool-Less Flange"}
           ]
         },
         {
@@ -276,12 +278,12 @@
           "type": "select",
           "options": [
             {"value":"","label":"N/A"},
-            {"value":"THT","label":"Thru-Hole (Header)"},
-            {"value":"SMT","label":"Surface Mount (Header)"},
-            {"value":"Screw","label":"Screw Terminal (Connector/Terminal)"},
-            {"value":"PIT","label":"Push in Terminal (Connector/Terminal)"},
-            {"value":"IDC","label":"Insulation Displacement (Connector/Terminal)"},
-            {"value":"Crimp","label":"Crimp Terminals (Connector/Terminal)"}
+            {"value":", THT","label":"Thru-Hole (Header)"},
+            {"value":", SMT","label":"Surface Mount (Header)"},
+            {"value":", Screw","label":"Screw Terminal (Connector/Terminal)"},
+            {"value":", PIT","label":"Push in Terminal (Connector/Terminal)"},
+            {"value":", IDC","label":"Insulation Displacement (Connector/Terminal)"},
+            {"value":", Crimp","label":"Crimp Terminals (Connector/Terminal)"}
           ]
         }
       ]
