@@ -1,10 +1,10 @@
 <div class="container">
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
-    <mat-card class="card">
+    <mat-card class="card" *ngIf="isObject(partCategories)">
       <mat-card-header>Choose a Category:</mat-card-header>
       <mat-card-content>
         <form class="example-form">
-          <mat-form-field class="example-full-width" *ngIf="partCategories !== undefined">
+          <mat-form-field class="example-full-width">
             <mat-label>Category</mat-label>
             <input
               type="text"
@@ -16,7 +16,7 @@
             />
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option
-                *ngFor="let partCategory of partCategories.categories"
+                *ngFor="let partCategory of filteredCategories | async"
                 [value]="partCategory"
               >
               <span>{{partCategory.name}}</span>
@@ -30,7 +30,7 @@
     </mat-card>
   </div>
   <br>
-  <div fxLayout="row" fxLayoutAlign="center center" class="content"  *ngIf="name.value !== null">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content"  *ngIf="isObject(name.value)">
     <mat-card class="card">
       <mat-card-header>{{name.value.name}} Fields:</mat-card-header>
       <mat-card-content>
@@ -39,7 +39,7 @@
     </mat-card>
   </div>
   <br />
-  <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="name.value !== null">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="isObject(name.value)">
     <mat-card>
       <mat-card-header>Part Name:</mat-card-header>
       <mat-card-content>
@@ -53,7 +53,7 @@
     </mat-card>
   </div>
 </div>
-<div style="position: fixed; bottom: 0; width:100%">
+<div style="position: fixed; bottom: 0; width:100%" *ngIf="isObject(partCategories)">
 <small style="display: flex; justify-content: center;">
   Data version {{partCategories.version}}, last updated {{partCategories.lastUpdate}}
 </small>

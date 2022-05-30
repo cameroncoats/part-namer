@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PartCategoryService } from '../part-category.service';
 import { PartCategories, PartCategory } from '../../PartCategory';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import {
   FormBuilder,
-  FormArray,
-  FormGroup,
-  FormControl,
-  Validators,
+  FormControl
 } from '@angular/forms';
 
 @Component({
@@ -18,7 +17,7 @@ export class NameGenComponent implements OnInit {
   partCategories: PartCategories;
   formValues: Record<string,unknown>;
   name = new FormControl();
-
+  filteredCategories: Observable<PartCategory[]>;
 
   constructor(
     private partCategoryService: PartCategoryService,
@@ -29,12 +28,32 @@ export class NameGenComponent implements OnInit {
     this.getPartCategories();
   }
 
-  getPartCategories(): void {
-    this.partCategoryService.getPartCategories()
-    .subscribe(partCategories => this.partCategories = partCategories);
+  private _filter(value: string): PartCategory[] {
+    const filterValue = value.toLowerCase();
+    return this.partCategories.categories.filter(category => category.name.toLowerCase().includes(filterValue));
   }
 
-  displayFn(value?: PartCategory): string {
+  getPartCategories(): void {
+    this.partCategoryService.getPartCategories()
+    .subscribe(partCategories => {
+      this.partCategories = partCategories;
+      this.filteredCategories = this.name.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value)),
+      );
+    });
+  }
+
+  isObject(obj): boolean {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+  };
+
+  displayFn(value): string {
+    if(typeof value == 'undefined') return;
+    if(value == null) return;
+    if(typeof value !== 'object') return;
+    if(!value.hasOwnProperty('name')) return;
+
     return value.name;
   }
 
@@ -70,4 +89,5 @@ export class NameGenComponent implements OnInit {
     });
     return text
   }
+
 }
