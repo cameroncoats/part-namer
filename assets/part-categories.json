@@ -1,6 +1,6 @@
 {
-  "version": "0.5",
-  "lastUpdate": "30/05/22",
+  "version": "0.6",
+  "lastUpdate": "22/06/22",
   "categories": [
     {
       "id": 1,
@@ -380,6 +380,51 @@
           "options":[
             "Braked",
             "Unbraked"
+          ]
+        }
+      ]
+    },
+    {
+      "id":13,
+      "name":"Cable",
+      "description":"Bulk cable without connectors",
+      "template":"Cable, {{CSA}}mm² {{Cores}}C{{Earth/CPC}} {{Series}}",
+      "fields":[
+        {
+          "name": "Cores",
+          "description": "Number of cores not including earth",
+          "type": "number"
+        },
+        {
+          "name": "Earth/CPC",
+          "description": "Does the cable include an earth wire or CPC",
+          "type": "select",
+          "options":[
+            {"label":"Yes","value":"+E"},
+            {"label":"No","value":""}
+          ]
+        },
+        {
+          "name": "CSA",
+          "description": "Cross-sectional Area in mm^2",
+          "type": "number"
+        },
+        {
+          "name": "Series",
+          "description": "Cable Series",
+          "type": "select",
+          "options": [
+            "YY",
+            "SY",
+            "CY",
+            "HO7",
+            "Tri-Rated",
+            "Arctic",
+            "Ethernet",
+            "Cat5e",
+            "Cat6",
+            "SWA",
+            "2491X"
           ]
         }
       ]
