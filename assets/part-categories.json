@@ -1,6 +1,6 @@
 {
-  "version": "0.6",
-  "lastUpdate": "22/06/22",
+  "version": "0.7",
+  "lastUpdate": "11/08/23",
   "categories": [
     {
       "id": 1,
@@ -236,8 +236,10 @@
             "MCV",
             "SPTAF",
             "Pin Header",
-            "MiniFit",
-            "MicroFit"
+            "Nano-Fit",
+            "Micro-Fit",
+            "Mini-Fit",
+            "Mega-Fit"
           ]
         },
         {
@@ -283,7 +285,7 @@
             {"value":", Screw","label":"Screw Terminal (Connector/Terminal)"},
             {"value":", PIT","label":"Push in Terminal (Connector/Terminal)"},
             {"value":", IDC","label":"Insulation Displacement (Connector/Terminal)"},
-            {"value":", Crimp","label":"Crimp Terminals (Connector/Terminal)"}
+            {"value":", Housing","label":"Separate Crimp Terminals (Connector/Terminal)"}
           ]
         }
       ]
@@ -292,7 +294,7 @@
       "id":9,
       "name":"Lead",
       "description":"Manufactured cable assembly with at least one connector",
-      "template":"{{Type}}, {{Connector 1}}{{Connector 2}}, {{Poles}}P, {{Length}}m",
+      "template":"{{Type}}, {{Connector 1}}{{Connector 1 Orientation}}{{Connector 2}}{{Connector 2 Orientation}}, {{Poles}}P, {{Length}}m",
       "fields": [
         {
           "name": "Type",
@@ -310,11 +312,21 @@
           "options": [
             "M8",
             "M12",
-            "PowerCon",
             "RJ45",
+            "PowerCon",
             "CEE16",
             "BS1363",
             {"value":"Wire","label":"Bare Wires"}
+          ]
+        },
+        {
+          "name": "Connector 1 Orientation",
+          "description":"Angle of male connector",
+          "type": "select",
+          "options": [
+            {"value":"","label":"Straight / 0°"},
+            {"value":" 45°","label":"Angled / 45 °"},
+            {"value":" 90°","label":"Angled / 90°"}
           ]
         },
         {
@@ -330,6 +342,16 @@
             {"value":"-CEE16","label":"CEE16"},
             {"value":"-BS1363","label":"BS1363"},
             {"value":"-Wire","label":"Bare Wires"}
+          ]
+        },
+        {
+          "name": "Connector 2 Orientation",
+          "description":"Angle of female connector",
+          "type": "select",
+          "options": [
+            {"value":"","label":"Straight / 0°"},
+            {"value":" 45°","label":"Angled / 45 °"},
+            {"value":" 90°","label":"Angled / 90°"}
           ]
         },
         {
