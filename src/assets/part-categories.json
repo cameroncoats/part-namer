@@ -236,8 +236,8 @@
             "MCV",
             "SPTAF",
             "Pin Header",
-            "MiniFit",
-            "MicroFit"
+            "Mini-Fit",
+            "Micro-Fit"
           ]
         },
         {
@@ -310,8 +310,11 @@
           "options": [
             "M8",
             "M12",
+            "M8 90°",
+            "M12 90°",
             "PowerCon",
             "RJ45",
+            "RJ45 90°",
             "CEE16",
             "BS1363",
             {"value":"Wire","label":"Bare Wires"}
@@ -325,8 +328,11 @@
             {"value":"","label":"Same as first connector"},
             {"value":"-M8","label":"M8"},
             {"value":"-M12","label":"M12"},
+            {"value":"-M8 90°","label":"M8 90°"},
+            {"value":"-M12 90°","label":"M12 90°"},
             {"value":"-PowerCon","label":"PowerCon"},
             {"value":"-RJ45","label":"RJ45"},
+            {"value":"-RJ45 90°","label":"RJ45 90°"},
             {"value":"-CEE16","label":"CEE16"},
             {"value":"-BS1363","label":"BS1363"},
             {"value":"-Wire","label":"Bare Wires"}
