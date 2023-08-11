@@ -1,5 +1,5 @@
 {
-  "version": "0.6",
+  "version": "0.7",
   "lastUpdate": "11/08/23",
   "categories": [
     {
@@ -236,8 +236,10 @@
             "MCV",
             "SPTAF",
             "Pin Header",
+            "Nano-Fit",
+            "Micro-Fit",
             "Mini-Fit",
-            "Micro-Fit"
+            "Mega-Fit"
           ]
         },
         {
@@ -283,7 +285,7 @@
             {"value":", Screw","label":"Screw Terminal (Connector/Terminal)"},
             {"value":", PIT","label":"Push in Terminal (Connector/Terminal)"},
             {"value":", IDC","label":"Insulation Displacement (Connector/Terminal)"},
-            {"value":", Crimp","label":"Crimp Terminals (Connector/Terminal)"}
+            {"value":", Housing","label":"Separate Crimp Terminals (Connector/Terminal)"}
           ]
         }
       ]
@@ -292,7 +294,7 @@
       "id":9,
       "name":"Lead",
       "description":"Manufactured cable assembly with at least one connector",
-      "template":"{{Type}}, {{Connector 1}}{{Connector 2}}, {{Poles}}P, {{Length}}m",
+      "template":"{{Type}}, {{Connector 1}}{{Connector 1 Orientation}}{{Connector 2}}{{Connector 2 Orientation}}, {{Poles}}P, {{Length}}m",
       "fields": [
         {
           "name": "Type",
@@ -310,14 +312,21 @@
           "options": [
             "M8",
             "M12",
-            "M8 90°",
-            "M12 90°",
-            "PowerCon",
             "RJ45",
-            "RJ45 90°",
+            "PowerCon",
             "CEE16",
             "BS1363",
             {"value":"Wire","label":"Bare Wires"}
+          ]
+        },
+        {
+          "name": "Connector 1 Orientation",
+          "description":"Angle of male connector",
+          "type": "select",
+          "options": [
+            {"value":"","label":"Straight / 0°"},
+            {"value":" 45°","label":"Angled / 45 °"},
+            {"value":" 90°","label":"Angled / 90°"}
           ]
         },
         {
@@ -328,14 +337,21 @@
             {"value":"","label":"Same as first connector"},
             {"value":"-M8","label":"M8"},
             {"value":"-M12","label":"M12"},
-            {"value":"-M8 90°","label":"M8 90°"},
-            {"value":"-M12 90°","label":"M12 90°"},
             {"value":"-PowerCon","label":"PowerCon"},
             {"value":"-RJ45","label":"RJ45"},
-            {"value":"-RJ45 90°","label":"RJ45 90°"},
             {"value":"-CEE16","label":"CEE16"},
             {"value":"-BS1363","label":"BS1363"},
             {"value":"-Wire","label":"Bare Wires"}
+          ]
+        },
+        {
+          "name": "Connector 2 Orientation",
+          "description":"Angle of female connector",
+          "type": "select",
+          "options": [
+            {"value":"","label":"Straight / 0°"},
+            {"value":" 45°","label":"Angled / 45 °"},
+            {"value":" 90°","label":"Angled / 90°"}
           ]
         },
         {
@@ -386,6 +402,51 @@
           "options":[
             "Braked",
             "Unbraked"
+          ]
+        }
+      ]
+    },
+    {
+      "id":13,
+      "name":"Cable",
+      "description":"Bulk cable without connectors",
+      "template":"Cable, {{CSA}}mm² {{Cores}}C{{Earth/CPC}} {{Series}}",
+      "fields":[
+        {
+          "name": "Cores",
+          "description": "Number of cores not including earth",
+          "type": "number"
+        },
+        {
+          "name": "Earth/CPC",
+          "description": "Does the cable include an earth wire or CPC",
+          "type": "select",
+          "options":[
+            {"label":"Yes","value":"+E"},
+            {"label":"No","value":""}
+          ]
+        },
+        {
+          "name": "CSA",
+          "description": "Cross-sectional Area in mm^2",
+          "type": "number"
+        },
+        {
+          "name": "Series",
+          "description": "Cable Series",
+          "type": "select",
+          "options": [
+            "YY",
+            "SY",
+            "CY",
+            "HO7",
+            "Tri-Rated",
+            "Arctic",
+            "Ethernet",
+            "Cat5e",
+            "Cat6",
+            "SWA",
+            "2491X"
           ]
         }
       ]
